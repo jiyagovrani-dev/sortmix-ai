@@ -262,15 +262,49 @@ if (itemImage && imagePreview) {
 }
 
 
-// DISPLAY AI RESULT AND RECOMMENDATION
-function showResult(identification, condition) {
+async function showResult(identification, condition) {
     if (!resultPanel) return;
 
     const category = guidance[identification.item]
         ? identification.item
         : "other";
 
-    const recommendation = guidance[category][condition] || guidance[category].unknown;
+     
+let recommendation = guidance[category][condition] || guidance[category].unknown;
+
+let apiRecommendation = null;
+
+const apiCategoryMap = {
+    computer: "electronic",
+    phone: "electronic",
+    tube: null,
+    battery: "battery",
+    plastic: "plastic",
+    paper: "paper",
+    clothes: "clothes",
+    other: null
+};
+
+const apiCategory = apiCategoryMap[category];
+
+if (apiCategory) {
+    try {
+        const response = await fetch("http://localhost:3000/api/recommendation", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ category: apiCategory })
+        });
+
+        if (response.ok) {
+            apiRecommendation = await response.json();
+        }
+    } catch (error) {
+        console.warn("Recommendation API unavailable; using local guidance.", error);
+    }
+}
+
 
    const confidence = ["high", "medium", "low"].includes(
     String(identification.confidence).toLowerCase()
@@ -306,10 +340,17 @@ const destinationSearch = destinationTypes[category] || destinationTypes.other;
 
             <div class="recommendation">
                 <p class="result-label">RECOMMENDED NEXT STEP</p>
-                <h3>${escapeHTML(recommendation[0])}</h3>
-                <ol>
-                    ${recommendation[1].map(step => `<li>${escapeHTML(step)}</li>`).join("")}
-                </ol>
+                
+<h3>${escapeHTML(apiRecommendation?.action || recommendation[0])}</h3>
+<ol>
+    ${
+        apiRecommendation
+            ? `<li>${escapeHTML(apiRecommendation.instructions)}</li>
+               <li>Suggested destination: ${escapeHTML(apiRecommendation.destination)}</li>`
+            : recommendation[1].map(step => `<li>${escapeHTML(step)}</li>`).join("")
+    }
+</ol>
+
             </div>
 
             <p class="result-disclaimer">
@@ -416,7 +457,7 @@ const response = await fetch("http://localhost:3000/api/identify", {
                 itemType.value = identification.item;
             }
 
-            showResult(identification, condition);
+            await showResult(identification, condition);
 
         } catch (error) {
             console.error("SortMix error:", error);

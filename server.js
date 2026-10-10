@@ -4,6 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
+const recommendationRoute = require("./recommendation-route");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-
+app.use("/api/recommendation", recommendationRoute);
 const allowedTypes = [
     "image/jpeg",
     "image/png",
