@@ -1,88 +1,76 @@
+# 🌱 SortMix AI — Smart Waste Sorting & Reuse Assistant
 
-# 🌱 SortMix AI
+SortMix AI helps people identify everyday waste items and discover safer, more sustainable ways to reuse, donate, recycle, or dispose of them.
 
-### Smart Waste Identification and Sustainable Disposal Assistant
+## 💡 Problem
 
-SortMix AI is an AI-powered web application that helps users identify waste items from images and discover suitable ways to reuse, repair, donate, or recycle them.
+People often don't know how to dispose of different materials correctly. Batteries and electronic waste need special handling, while usable clothes, paper, and plastic items may have reuse or recycling options.
 
 ## ✨ Features
 
-- 📸 **Image Upload:** Upload an image of a waste item.
-- 🤖 **AI Identification:** Uses Google's Gemini API to identify the uploaded item.
-- ♻️ **Smart Recommendations:** Provides suggestions based on the item's condition.
-- 📍 **Find Nearby Destinations:** Opens Google Maps searches to help users find recycling and donation options.
-- 🌍 **Sustainability Focus:** Encourages responsible waste management and reuse.
+- **AI image identification:** Uses Google's Gemini API to identify an uploaded item.
+- **Condition-based guidance:** Offers suggestions based on whether an item is working, repairable, broken, or unknown.
+- **Waste recommendations API:** Provides category-based actions and disposal instructions.
+- **Nearby destination search:** Opens Google Maps searches for relevant recycling, donation, and collection options.
+- **Fallback guidance:** Keeps local recommendations available if the recommendation API is unavailable.
+- **AWS SAM component:** Includes a serverless recommendation handler and SAM template.
 
 ## 🛠️ Tech Stack
 
-**Frontend:** HTML, CSS, JavaScript
+- HTML, CSS, JavaScript
+- Node.js and Express
+- Google Gemini API
+- AWS Serverless Application Model (AWS SAM)
+- Amazon API Gateway and AWS Lambda configuration in the SAM template
 
-**Backend:** Node.js, Express.js
+## 🏗️ Architecture
 
-**AI:** Google Gemini API
+1. The user uploads an item image.
+2. The Express backend sends the image to Gemini for identification.
+3. The frontend displays the identified item and condition-specific guidance.
+4. The frontend requests a category-based recommendation from the local Express API.
+5. The AWS SAM project contains a corresponding serverless recommendation handler that can be tested separately.
 
-**Other Tools:** Multer, dotenv, CORS, Google Maps
+**Current implementation note:** The running frontend calls the local Express recommendation endpoint. The SAM handler has been built and tested separately; deployment to AWS Lambda has not been completed.
 
-## 🚀 Getting Started
+## 🚀 Run Locally
 
-### Prerequisites
-
+### Requirements
 - Node.js and npm
-- A Google Gemini API key
+- A Gemini API key
 
-### Installation
+### Setup
+1. Clone this repository.
+2. Install dependencies using `npm install`.
+3. Create a `.env` file with your own credentials:
 
-1. Clone the repository:
+```env
+GEMINI_API_KEY=your_gemini_api_key
+PORT=3000
+```
 
-   ```bash
-   git clone https://github.com/jiyagovrani-dev/sortmix-ai.git
-   ```
+4. Start the backend using `node server.js`.
+5. Open `index.html` using VS Code Live Server.
 
-2. Open the project folder:
+Keep `.env` private. Never commit API keys.
 
-   ```bash
-   cd sortmix-ai
-   ```
+## ☁️ AWS SAM
 
-3. Install dependencies:
+The `sortmix-recommendations/` directory contains the serverless recommendation handler and its AWS SAM template.
 
-   ```bash
-   npm install
-   ```
+Validate and build from that directory:
 
-4. Create a `.env` file in the project root:
+```bash
+sam validate --template-file template.yaml
+sam build --template-file template.yaml
+```
 
-   ```env
-   GEMINI_API_KEY=your_api_key_here
-   PORT=3000
-   ```
+AWS deployment has not been performed.
 
-5. Start the backend:
+## ⚠️ Disclaimer
 
-   ```bash
-   node server.js
-   ```
+Recommendations are general guidance, not verified local facility listings. Confirm local recycling rules and contact collection centres before visiting. Handle damaged batteries and potentially hazardous items with care.
 
-6. Open `index.html` using VS Code Live Server.
+## 🌍 Vision
 
-## 🔐 Security
-
-Keep your API key private. Never upload your `.env` file or share your API key publicly.
-
-## 🔮 Future Scope
-
-- Connect users with NGOs and verified recycling centres.
-- Enable online donations and relevant service transactions.
-- Introduce doorstep waste pickup options.
-- Track environmental impact, such as waste diverted from landfills.
-- Improve location-based recommendations.
-
-*These are planned enhancements, not currently implemented features.*
-
-## 🌿 Our Mission
-
-To make responsible waste disposal easier by combining AI, technology, and sustainable choices.
-
----
-
-**Built for Environmental Hacks by WeMakeDevs × AWS.**
+SortMix AI aims to make sustainable disposal decisions easier by combining AI-powered identification with practical reuse and recycling guidance.
