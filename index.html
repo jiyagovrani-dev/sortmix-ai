@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f8f1">
+    <meta name="description" content="SortMix helps you find a better next step for unwanted items: repair, reuse, donate, sell or recycle.">
+    <title>SortMix — Give Waste a Next Step</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo" aria-label="SortMix home">
+            <span class="logo-mark">↗</span>
+            SortMix<span class="logo-dot">.</span>
+        </a>
+        <div class="nav-center">A LITTLE LESS WASTE. A LOT MORE PURPOSE.</div>
+        <a href="#workspace" class="nav-cta">Get started <span>↗</span></a>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    YOUR ITEM DESERVES A SECOND CHANCE
+                </div>
+
+                <h1>Don't toss it.<br><span>Transform its next chapter.</span></h1>
+
+                <p class="hero-description">
+                    That old computer, broken bulb or pile of unused clothes?
+                    Before it becomes waste, let's figure out what you can do with it.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#workspace" class="primary-link">
+                        Find its next step <span>↗</span>
+                    </a>
+                    <span class="hero-note">Better choices start with one item.</span>
+                </div>
+
+                <div class="hero-trust">
+                    <span class="trust-icon">✳</span><span>Repair</span>
+                    <span class="trust-divider">·</span><span>Reuse</span>
+                    <span class="trust-divider">·</span><span>Recycle responsibly</span>
+                </div>
+            </div>
+
+            <div class="hero-art" aria-label="Illustration of a plant growing from a recycled box">
+                <div class="art-circle"></div>
+                <div class="floating-tag tag-top">
+                    <span class="tag-icon">↻</span>Give it another life
+                </div>
+                <div class="plant-illustration">
+                    <div class="leaf leaf-one"></div>
+                    <div class="leaf leaf-two"></div>
+                    <div class="leaf leaf-three"></div>
+                    <div class="plant-stem"></div>
+                    <div class="plant-base"></div>
+                    <div class="plant-pot"><div class="pot-top"></div></div>
+                </div>
+                <div class="floating-tag tag-bottom">
+                    <span class="tag-sparkle">✳</span>Small step, real impact
+                </div>
+                <div class="art-number">01 <span>/ MAKE A DIFFERENCE</span></div>
+            </div>
+        </section>
+
+        <!-- WORKSPACE -->
+        <section class="workspace-section" id="workspace">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow section-eyebrow">LET'S FIGURE IT OUT</div>
+                    <h2>Every item has <span>options.</span></h2>
+                </div>
+                <p class="section-description">
+                    A few quick details are all we need to help you decide what to do next.
+                </p>
+            </div>
+
+            <div class="workspace">
+                <!-- ITEM FORM -->
+                <div class="form-panel">
+                    <div class="panel-heading">
+                        <div class="panel-icon">✳</div>
+                        <div>
+                            <h3>Tell us about your item</h3>
+                            <p>We'll help you explore the possibilities.</p>
+                        </div>
+                    </div>
+
+                    <form id="sortForm">
+                        <div class="field-group">
+                            <label for="itemImage">
+                                <span class="field-number">01</span>
+                                Show us your item
+                                <span class="optional-label">OPTIONAL</span>
+                            </label>
+
+                            <div class="upload-box">
+                                <input
+                                    type="file"
+                                    id="itemImage"
+                                    name="image"
+                                    accept="image/png, image/jpeg, image/webp"
+                                    aria-label="Choose an item photo"
+                                >
+
+                                <div class="preview" id="uploadPlaceholder">
+                                    <span class="upload-icon">↑</span>
+                                    <p><strong>Drop a photo or browse</strong></p>
+                                    <small>PNG, JPG or WEBP</small>
+                                </div>
+
+                                <img
+                                    id="imagePreview"
+                                    class="preview-image"
+                                    alt="Selected item preview"
+                                    style="display: none;"
+                                >
+                            </div>
+
+                            <small class="field-help" id="photoHelp">
+                                Upload a photo for AI identification.
+                            </small>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="itemType">
+                                <span class="field-number">02</span>
+                                What are we looking at?
+                            </label>
+
+                            <select id="itemType" required>
+                                <option value="">Choose your item type</option>
+                                <option value="computer">Old PC / Computer</option>
+                                <option value="phone">Mobile phone</option>
+                                <option value="tube">Tube light / CFL bulb</option>
+                                <option value="battery">Battery</option>
+                                <option value="plastic">Plastic bottle</option>
+                                <option value="paper">Paper / Cardboard</option>
+                                <option value="clothes">Old clothes</option>
+                                <option value="other">Other / Not sure</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="condition">
+                                <span class="field-number">03</span>
+                                What's its current condition?
+                            </label>
+
+                            <select id="condition" required>
+                                <option value="">Select its condition</option>
+                                <option value="working">Working / usable</option>
+                                <option value="repair">Damaged but may be repairable</option>
+                                <option value="broken">Broken / unusable</option>
+                                <option value="unknown">I'm not sure</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="primary-btn">
+                            <span>Find my item's next step</span>
+                            <span class="button-arrow">↗</span>
+                        </button>
+                    </form>
+
+                    <div class="privacy-note">
+                        <span>⌑</span>
+                        <span>Your selected photo is sent to the local demo backend for AI identification.</span>
+                    </div>
+                </div>
+
+                <!-- AI RESULT PANEL -->
+                <div class="result-panel" id="resultPanel" aria-live="polite">
+                    <div class="result-placeholder">
+                        <div class="result-topline">
+                            <span class="result-label">YOUR NEXT STEP</span>
+                            <span class="result-status"><span></span> AWAITING ITEM</span>
+                        </div>
+
+                        <div class="placeholder-art">
+                            <div class="placeholder-orbit orbit-one"></div>
+                            <div class="placeholder-orbit orbit-two"></div>
+                            <div class="placeholder-icon">✳</div>
+                            <span class="orbit-leaf">↗</span>
+                        </div>
+
+                        <div class="placeholder-content">
+                            <h3>Let's find a better way.</h3>
+                            <p>
+                                Your item might have another useful chapter.
+                                Tell us what it is, and we'll explore your next steps.
+                            </p>
+                        </div>
+
+                        <div class="mini-steps">
+                            <div><span class="step-number">01</span><span>Understand</span></div>
+                            <span class="step-connector"></span>
+                            <div><span class="step-number">02</span><span>Choose</span></div>
+                            <span class="step-connector"></span>
+                            <div><span class="step-number">03</span><span>Act</span></div>
+                        </div>
+
+                        <div class="result-bottom-note">
+                            <span>✳</span>
+                            The best next step depends on the item and its condition.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMISE SECTION -->
+        <section class="promise-section">
+            <div class="promise-heading">
+                <span class="eyebrow">MORE THAN A BIN</span>
+                <h2>Waste less. <span>Think differently.</span></h2>
+            </div>
+
+            <div class="promise-grid">
+                <article class="promise-card">
+                    <div class="promise-card-top">
+                        <span class="promise-icon">↗</span>
+                        <span class="card-index">01</span>
+                    </div>
+                    <h3>Find the possibilities</h3>
+                    <p>Explore whether your item could be repaired, reused, sold or donated.</p>
+                </article>
+
+                <article class="promise-card promise-card-featured">
+                    <div class="promise-card-top">
+                        <span class="promise-icon">✳</span>
+                        <span class="card-index">02</span>
+                    </div>
+                    <h3>Make a safer choice</h3>
+                    <p>Learn why certain items, like batteries and bulbs, need special handling.</p>
+                </article>
+
+                <article class="promise-card">
+                    <div class="promise-card-top">
+                        <span class="promise-icon">↻</span>
+                        <span class="card-index">03</span>
+                    </div>
+                    <h3>Take the next step</h3>
+                    <p>Get practical guidance on preparing an item for its next destination.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CLOSING BANNER -->
+        <section class="closing-banner">
+            <div>
+                <span class="closing-kicker">ONE ITEM AT A TIME</span>
+                <h2>Good decisions don't<br>have to be complicated.</h2>
+            </div>
+            <a href="#workspace" class="closing-link">
+                Let's start <span>↗</span>
+            </a>
+            <span class="closing-decoration">✳</span>
+        </section>
+
+        <!-- DESTINATION SECTION -->
+        <section class="location-section" id="destinations">
+            <h2>Find your item's next destination</h2>
+            <p>Discover online and nearby options for your item.</p>
+
+            <label for="userLocation">Your city or PIN code</label>
+            <input
+                type="text"
+                id="userLocation"
+                placeholder="e.g. Jaipur or 302001"
+                autocomplete="postal-code"
+            >
+
+            <button type="button" id="findOptions" class="primary-btn">
+                Find nearby options →
+            </button>
+
+            <div id="destinationResults"></div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="#" class="logo footer-logo">
+            <span class="logo-mark">↗</span>
+            SortMix<span class="logo-dot">.</span>
+        </a>
+        <p>Make the next step count.</p>
+        <small>Responsible disposal guidance varies by item and location.</small>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
